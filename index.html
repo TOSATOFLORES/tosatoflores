@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tosato Flores</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -35,6 +38,7 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       text-align: center;
       width: 250px;
+      flex: 1 1 250px;
     }
     .produto img {
       max-width: 100%;
@@ -67,6 +71,8 @@
       width: 320px;
       display: none;
       z-index: 1000;
+      max-height: 90vh;
+      overflow-y: auto;
     }
     #btnCarrinho {
       position: fixed;
@@ -75,6 +81,7 @@
       background: none;
       border: none;
       cursor: pointer;
+      z-index: 1001;
     }
     #btnCarrinho img {
       width: 70px;
@@ -83,6 +90,13 @@
     .item-carrinho {
       border-bottom: 1px solid #ddd;
       padding: 10px 0;
+    }
+    .item-carrinho img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-right: 5px;
     }
     .quantidade {
       display: flex;
@@ -113,28 +127,36 @@
       border-radius: 5px;
       text-decoration: none;
     }
-    .item-img {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-      border-radius: 4px;
-      margin-right: 5px;
-      vertical-align: middle;
+    .formulario {
+      margin-top: 10px;
     }
-    .campo-info {
+    .formulario input {
       width: 100%;
       padding: 6px;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
+      margin-bottom: 8px;
       border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    @media screen and (max-width: 600px) {
+      .produto {
+        width: 100%;
+      }
+      #carrinho {
+        width: 95%;
+        right: 2.5%;
+      }
+      #btnCarrinho img {
+        width: 60px;
+        height: 60px;
+      }
     }
   </style>
 </head>
 <body onclick="fecharCarrinhoFora(event)">
   <header>
     <h1>Tosato Flores</h1>
-    <img src="imagens floricultura/7557333a-4d58-42fd-9cbc-bd516917e544-removebg-preview.png" alt="Logo" width="550px" height="550"/>
+    <img src="imagens floricultura/7557333a-4d58-42fd-9cbc-bd516917e544-removebg-preview.png" alt="Logo" width="300px" height="300"/>
   </header>
 
   <main>
@@ -142,19 +164,19 @@
       <h2 class="section-title">Rosas cor de Rosas</h2>
       <div class="produtos">
         <div class="produto" data-nome="(Classico) Rosas Cor de Rosas - 5 unidades" data-preco="49.90" data-img="imagens floricultura/rosa cor de rosa.jpg">
-          <img src="imagens floricultura/rosa cor de rosa.jpg" alt="">
+          <img src="imagens floricultura/rosa cor de rosa.jpg" alt="(Classico) Rosas Cor de Rosas - 5 unidades">
           <h3>(Classico) Rosas Cor de Rosas - 5 unidades</h3>
           <p>R$ 49,90</p>
           <button onclick="adicionarCarrinho(this)">Comprar</button>
         </div>
         <div class="produto" data-nome="(Romantico) Rosas cor de Rosas - 10 unidades" data-preco="89.90" data-img="imagens floricultura/rosa cor de rosa.jpg">
-          <img src="imagens floricultura/rosa cor de rosa.jpg" alt="">
+          <img src="imagens floricultura/rosa cor de rosa.jpg" alt="Buquê médio">
           <h3>(Romantico) Rosas cor de Rosas - 10 unidades</h3>
           <p>R$ 89,90</p>
           <button onclick="adicionarCarrinho(this)">Comprar</button>
         </div>
         <div class="produto" data-nome="(Premium) Rosas cor de Rosas - 40 unidades" data-preco="159.90" data-img="imagens floricultura/rosa cor de rosa.jpg">
-          <img src="imagens floricultura/rosa cor de rosa.jpg" alt="">
+          <img src="imagens floricultura/rosa cor de rosa.jpg" alt="Buquê grande">
           <h3>(Premium) Rosas cor de Rosas - 40 unidades</h3>
           <p>R$ 159,90</p>
           <button onclick="adicionarCarrinho(this)">Comprar</button>
@@ -166,19 +188,19 @@
       <h2 class="section-title">Rosas Vermelhas</h2>
       <div class="produtos">
         <div class="produto" data-nome="(Classico) Rosas Vermelhas - 5 unidades" data-preco="49.90" data-img="imagens floricultura/8b6356bb-91de-41ce-8080-ca187f44cb5c.jpg">
-          <img src="imagens floricultura/8b6356bb-91de-41ce-8080-ca187f44cb5c.jpg" alt="">
+          <img src="imagens floricultura/8b6356bb-91de-41ce-8080-ca187f44cb5c.jpg" alt="Cartão pequeno">
           <h3>(Classico) Rosas Vermelhas - 5 unidades</h3>
           <p>R$ 49,90</p>
           <button onclick="adicionarCarrinho(this)">Comprar</button>
         </div>
         <div class="produto" data-nome="(Romantico) Rosas Vermelhas - 10 unidades" data-preco="89.90" data-img="imagens floricultura/8b6356bb-91de-41ce-8080-ca187f44cb5c.jpg">
-          <img src="imagens floricultura/8b6356bb-91de-41ce-8080-ca187f44cb5c.jpg" alt="">
+          <img src="imagens floricultura/8b6356bb-91de-41ce-8080-ca187f44cb5c.jpg" alt="Cartão médio">
           <h3>(Romantico) Rosas Vermelhas - 10 unidades</h3>
           <p>R$ 89,90</p>
           <button onclick="adicionarCarrinho(this)">Comprar</button>
         </div>
         <div class="produto" data-nome="(Premium) Rosas Vermelhas - 40 unidades" data-preco="159.90" data-img="imagens floricultura/8b6356bb-91de-41ce-8080-ca187f44cb5c.jpg">
-          <img src="imagens floricultura/8b6356bb-91de-41ce-8080-ca187f44cb5c.jpg" alt="">
+          <img src="imagens floricultura/8b6356bb-91de-41ce-8080-ca187f44cb5c.jpg" alt="Cartão grande">
           <h3>(Premium) Rosas Vermelhas - 40 unidades</h3>
           <p>R$ 159,90</p>
           <button onclick="adicionarCarrinho(this)">Comprar</button>
@@ -193,9 +215,11 @@
     <div id="itensCarrinho"></div>
     <div class="total" id="totalCarrinho">Total: R$ 0,00</div>
 
-    <input class="campo-info" id="endereco" placeholder="Endereço">
-    <input class="campo-info" id="numero" placeholder="Número da casa">
-    <input class="campo-info" id="bairro" placeholder="Bairro">
+    <div class="formulario">
+      <input type="text" id="endereco" placeholder="Endereço">
+      <input type="text" id="numero" placeholder="Número da casa">
+      <input type="text" id="bairro" placeholder="Bairro">
+    </div>
 
     <a id="finalizarPedido" class="finalizar" href="#" target="_blank">Finalizar pedido no WhatsApp</a>
   </div>
@@ -212,10 +236,10 @@
       const produto = botao.closest('.produto');
       const nome = produto.dataset.nome;
       const preco = parseFloat(produto.dataset.preco);
-      const imagem = produto.dataset.img;
+      const img = produto.dataset.img;
 
       if (!carrinho[nome]) {
-        carrinho[nome] = { preco, quantidade: 1, imagem };
+        carrinho[nome] = { preco, quantidade: 1, img };
       } else {
         carrinho[nome].quantidade++;
       }
@@ -226,6 +250,7 @@
     function atualizarCarrinho() {
       const container = document.getElementById('itensCarrinho');
       container.innerHTML = '';
+
       const nomesOrdenados = Object.keys(carrinho).sort();
       let total = 0;
 
@@ -236,7 +261,7 @@
         const div = document.createElement('div');
         div.classList.add('item-carrinho');
         div.innerHTML = `
-          <img src="${item.imagem}" class="item-img" alt="">
+          <img src="${item.img}" alt="${nome}">
           <strong>${nome}</strong><br>
           <div class="quantidade">
             <button onclick="alterarQuantidade('${nome}', -1)">-</button>
@@ -250,15 +275,14 @@
 
       document.getElementById('totalCarrinho').textContent = `Total: R$ ${total.toFixed(2)}`;
 
-      const endereco = document.getElementById('endereco').value || '(sem endereço)';
-      const numero = document.getElementById('numero').value || '(sem número)';
-      const bairro = document.getElementById('bairro').value || '(sem bairro)';
+      const endereco = document.getElementById('endereco').value || 'Não informado';
+      const numero = document.getElementById('numero').value || 'Não informado';
+      const bairro = document.getElementById('bairro').value || 'Não informado';
 
       const mensagem = nomesOrdenados.map(nome => {
         const item = carrinho[nome];
         return `• ${nome} (x${item.quantidade}) - R$ ${(item.preco * item.quantidade).toFixed(2)}`;
       }).join('%0A');
-
       const link = `https://wa.me/${numeroWhatsApp}?text=Olá! Gostaria de fazer um pedido:%0A${mensagem}%0A%0AEndereço: ${endereco}, Nº ${numero}, Bairro: ${bairro}%0ATotal: R$ ${total.toFixed(2)}`;
       document.getElementById('finalizarPedido').href = link;
     }
